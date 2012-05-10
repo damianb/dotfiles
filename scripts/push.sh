@@ -36,13 +36,12 @@ case "$MODE" in
 	FILENAME=${2##*/}
 	EXT=${2##.*}
 	echo copying file to "${TEMP_DIR}${FILENAME}" temporarily
-	cp "$2" "${TEMP_DIR}${FILENAME}"
 	case "$EXT" in
 	 'png' )
 		echo copying file to "${TEMP_DIR}/${FILENAME}" temporarily                                               │  rm ./-foo                                                                                                      
 	        cp "$2" "${TEMP_DIR}${FILENAME}"
-		rm -f "${TEMP_DIR}${FILENAME}"
 		pngcrush -q "${TEMP_DIR}/${FILENAME}" "${LOCAL_DIR}${FILENAME}"
+		rm -f "${TEMP_DIR}${FILENAME}"
 	 ;;
 	 * )
 		cp "$2" "${LOCAL_DIR}${FILENAME}"
