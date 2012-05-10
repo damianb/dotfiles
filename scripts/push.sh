@@ -8,12 +8,20 @@
 # - local package "scrot"
 # - local package "notify-send"
 # - local package "pngcrush"
+# - internet connection...unless you do it all via LAN. why would you do it all over LAN?  are you some kind of introverted, lonely, angsty sadist?
 #
+# If you want it hooked up to a hotkey, figure out how to do that in $DISTRO yourself.
+#
+#### useful:
+# alias push="/home/katana/scripts/push.sh"
+# alias pushscreen="/home/katana/scripts/push.sh -s"
+# alias pushfile="/home/katana/scripts/push.sh -u"
+####
 
 TEMP_DIR="/tmp/"
 LOCAL_DIR="/home/katana/push/"
 REMOTE_SCP="katana@sabros:/home/katana/public_html/push/"
-WEB_URL_BASE="http://codebite.net/~katana/push/"
+WEB_URL_BASE="http://codebite.net/push/"
 
 MODE="$1"
 case "$MODE" in
