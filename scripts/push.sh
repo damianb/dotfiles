@@ -29,6 +29,7 @@ case "$MODE" in
 	FILENAME="$(mktemp push-`date +%s`-XXXXXXXX.png)"
 	echo live screenshot saving to "${LOCAL_DIR}${FILENAME}"
 	scrot -d 0 "${TEMP_DIR}${FILENAME}"
+	echo pngcrushing "${FILENAME}"
 	pngcrush -q "${TEMP_DIR}${FILENAME}" "${LOCAL_DIR}${FILENAME}"
 	rm -f "${TEMP_DIR}${FILENAME}"
  ;;
