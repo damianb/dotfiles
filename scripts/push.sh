@@ -26,7 +26,7 @@ WEB_URL_BASE="http://codebite.net/push/"
 MODE="$1"
 case "$MODE" in
  '-s' | '--screen' )
-	FILENAME=`date +%s`"-${RANDOM}.png"
+	FILENAME="$(mktemp push-`date +%s`-XXXXXXXX.png)"
 	echo live screenshot saving to "${LOCAL_DIR}${FILENAME}"
 	scrot -d 0 "${TEMP_DIR}${FILENAME}"
 	pngcrush -q "${TEMP_DIR}${FILENAME}" "${LOCAL_DIR}${FILENAME}"
