@@ -17,6 +17,27 @@
 # alias pushscreen="/home/katana/scripts/push.sh -s"
 # alias pushfile="/home/katana/scripts/push.sh -u"
 ####
+#
+# Copyright (c) 2012 Damian Bushong
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+# IN THE SOFTWARE.
+#
 
 TEMP_DIR="/tmp/"
 LOCAL_DIR="/home/katana/push/"
@@ -33,11 +54,14 @@ case "$MODE" in
 	pngcrush -q "${TEMP_DIR}${FILENAME}" "${LOCAL_DIR}${FILENAME}"
 	rm -f "${TEMP_DIR}${FILENAME}"
  ;;
+ '-js' | '--jpegscreen' )
+	FILENAME="$(mktemp push-`date +%s`-XXXXXXXX.jpg)"
+	echo live screenshot saving to "${LOCAL_DIR}${FILENAME}"
+        scrot -d 0 "${LOCAL_DIR}${FILENAME}"
+ ;;
  '-u' | '--upload' )
 	FILENAME=${2##*/}
-	EXT=${2##.*}
-	echo copying file to "${TEMP_DIR}${FILENAME}" temporarily
-	case "$EXT" in
+	case "${2##.*}" in
 	 'png' )
 		echo copying file to "${TEMP_DIR}/${FILENAME}" temporarily                                               │  rm ./-foo                                                                                                      
 	        cp "$2" "${TEMP_DIR}${FILENAME}"
@@ -48,6 +72,21 @@ case "$MODE" in
 		cp "$2" "${LOCAL_DIR}${FILENAME}"
 	 ;;
 	esac
+ ;;
+ '-h' | '--help' )
+	echo 'Usage:'
+	echo '  push [OPTION...]'
+	echo ''
+	echo '  -s,  --screen			Take, archive, and upload a PNG screenshot'
+	echo '  -js, --jpegscreen		Take, archive, and upload a JPEG screenshot'
+	echo '  -u,  --upload FILE		Archive and upload specified FILE'
+	echo '       --help			display this help and exit'
+#	echo '       --version			output version information and exit'
+	echo ''
+	echo 'Magic push script (c) 2012 codebite.net'
+	echo 'Licensed under the MIT License <http://www.opensource.org/licenses/mit-license.php>'
+	echo 'Source available at <https://github.com/damianb/dotfiles/blob/master/scripts/push.sh>'
+	exit;
  ;;
  * )
 	echo 'invalid argument'
