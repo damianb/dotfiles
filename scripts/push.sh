@@ -49,6 +49,7 @@ case "$MODE" in
  '-s' | '--screen' )
 	FILENAME="$(mktemp --tmpdir=${LOCAL_DIR} push-`date +%s`-XXXXXXXX.png)"
 	FILENAME=${FILENAME##*/}
+	chmod 0664 "${TEMP_DIR}${FILENAME}"
 	echo live screenshot saving to "${LOCAL_DIR}${FILENAME}"
 	scrot -d 0 "${TEMP_DIR}${FILENAME}"
 	echo pngcrushing "${FILENAME}"
@@ -58,6 +59,7 @@ case "$MODE" in
  '-js' | '--jpegscreen' )
 	FILENAME="$(mktemp --tmpdir=${LOCAL_DIR} push-`date +%s`-XXXXXXXX.jpg)"
 	FILENAME=${FILENAME##*/}
+	chmod 0664 "${TEMP_DIR}${FILENAME}"
 	echo live screenshot saving to "${LOCAL_DIR}${FILENAME}"
         scrot -d 0 "${LOCAL_DIR}${FILENAME}"
  ;;
