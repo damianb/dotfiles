@@ -47,7 +47,8 @@ WEB_URL_BASE="http://codebite.net/push/"
 MODE="$1"
 case "$MODE" in
  '-s' | '--screen' )
-	FILENAME="$(mktemp push-`date +%s`-XXXXXXXX.png)"
+	FILENAME="$(mktemp --tmpdir=${LOCAL_DIR} push-`date +%s`-XXXXXXXX.png)"
+	FILENAME=${FILENAME##*/}
 	echo live screenshot saving to "${LOCAL_DIR}${FILENAME}"
 	scrot -d 0 "${TEMP_DIR}${FILENAME}"
 	echo pngcrushing "${FILENAME}"
@@ -55,7 +56,8 @@ case "$MODE" in
 	rm -f "${TEMP_DIR}${FILENAME}"
  ;;
  '-js' | '--jpegscreen' )
-	FILENAME="$(mktemp push-`date +%s`-XXXXXXXX.jpg)"
+	FILENAME="$(mktemp --tmpdir=${LOCAL_DIR} push-`date +%s`-XXXXXXXX.jpg)"
+	FILENAME=${FILENAME##*/}
 	echo live screenshot saving to "${LOCAL_DIR}${FILENAME}"
         scrot -d 0 "${LOCAL_DIR}${FILENAME}"
  ;;
