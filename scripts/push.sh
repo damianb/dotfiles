@@ -42,7 +42,7 @@
 TEMP_DIR="/tmp/"
 LOCAL_DIR="/home/katana/push/"
 REMOTE_SCP="katana@sabros:/home/katana/public_html/push/"
-WEB_URL_BASE="http://codebite.net/push/"
+WEB_URL_BASE="http://odios.us/p/"
 
 MODE="$1"
 case "$MODE" in
