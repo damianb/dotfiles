@@ -42,7 +42,8 @@
 TEMP_DIR="/tmp/"
 LOCAL_DIR="/home/katana/push/"
 REMOTE_SCP="katana@sabros:/home/katana/public_html/push/"
-WEB_URL_BASE="http://odios.us/p/"
+WEB_URL_BASE="http://odios.us/push/"
+WEB_SHORTENER="http://odios.us/url/?file="
 
 MODE="$1"
 case "$MODE" in
@@ -67,7 +68,7 @@ case "$MODE" in
 	FILENAME=${2##*/}
 	case "${2##.*}" in
 	 'png' )
-		echo copying file to "${TEMP_DIR}/${FILENAME}" temporarily                                               │  rm ./-foo                                                                                                      
+		echo copying file to "${TEMP_DIR}/${FILENAME}" temporarily
 	        cp "$2" "${TEMP_DIR}${FILENAME}"
 		echo pngcrushing "${FILENAME}"
 		pngcrush -q "${TEMP_DIR}/${FILENAME}" "${LOCAL_DIR}${FILENAME}"
@@ -102,6 +103,17 @@ esac
 WEB_FILENAME=`md5sum "${LOCAL_DIR}${FILENAME}" | sed -e 's/\([^ ]*\) \(.*\(\..*\)\)$/\1\3/'`
 scp "${LOCAL_DIR}${FILENAME}" "${REMOTE_SCP}${WEB_FILENAME}"
 echo "file uploaded to ${REMOTE_SCP}${WEB_FILENAME}"
-echo "upload viewable at ${WEB_URL_BASE}${WEB_FILENAME}"
-echo "${WEB_URL_BASE}${WEB_FILENAME}" | xclip -selection clipboard
+
+URL=${WEB_URL_BASE}${WEB_FILENAME}
+if [ -n "$WEB_SHORTENER" ]
+then
+	SHORTENER=`curl -L -s ${WEB_SHORTENER}${WEB_FILENAME}`
+	if [ "${SHORTENER:0:5}" == 'clear' ]
+	then
+		URL=${SHORTENER:7}
+	fi
+fi
+
+echo $URL | xclip -selection clipboard
+echo upload viewable at $URL
 notify-send "Image uploaded, link copied to clipboard"
