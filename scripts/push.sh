@@ -45,24 +45,46 @@ REMOTE_SCP="katana@sabros:/home/katana/public_html/push/"
 WEB_URL_BASE="http://odios.us/push/"
 WEB_SHORTENER="http://odios.us/url/?file="
 
-MODE="$1"
-case "$MODE" in
+if [ "$2"  == '--thumb' ]
+then
+	THUMBFILENAME=""
+	GEN_THUMBNAIL="-t 50% "
+else
+	THUMBFILENAME=""
+	GEN_THUMBNAIL=""
+fi
+
+case "$1" in
  '-s' | '--screen' )
 	FILENAME="$(mktemp --tmpdir=${LOCAL_DIR} push-`date +%s`-XXXXXXXX.png)"
 	FILENAME=${FILENAME##*/}
+	if [ -n "$GEN_THUMBNAIL" ]
+        then
+		THUMBFILENAME="${FILENAME/.png/-thumb.png}"
+        fi
 	chmod 0664 "${LOCAL_DIR}${FILENAME}"
 	echo live screenshot saving to "${LOCAL_DIR}${FILENAME}"
-	scrot -d 0 "${TEMP_DIR}${FILENAME}"
+	scrot -z $GEN_THUMBNAIL -d 0 "${TEMP_DIR}${FILENAME}"
 	echo pngcrushing "${FILENAME}"
 	pngcrush -q "${TEMP_DIR}${FILENAME}" "${LOCAL_DIR}${FILENAME}"
+	if [ -n "$GEN_THUMBNAIL" ]
+	then
+		echo pngcrushing "${THUMBFILENAME}"
+		pngcrush -q "${TEMP_DIR}${THUMBFILENAME}" "${LOCAL_DIR}${THUMBFILENAME}"
+		rm -f "${TEMP_DIR}${THUMBFILENAME}"
+	fi
 	rm -f "${TEMP_DIR}${FILENAME}"
  ;;
  '-js' | '--jpegscreen' )
 	FILENAME="$(mktemp --tmpdir=${LOCAL_DIR} push-`date +%s`-XXXXXXXX.jpg)"
 	FILENAME=${FILENAME##*/}
+	if [ -n "$GEN_THUMBNAIL" ]
+	then
+		THUMBFILENAME="${FILENAME/.png/-thumb.png}"
+	fi
 	chmod 0664 "${LOCAL_DIR}${FILENAME}"
 	echo live screenshot saving to "${LOCAL_DIR}${FILENAME}"
-        scrot -d 0 "${LOCAL_DIR}${FILENAME}"
+        scrot -z $GEN_THUMBNAIL -d 0 "${LOCAL_DIR}${FILENAME}"
  ;;
  '-u' | '--upload' )
 	FILENAME=${2##*/}
@@ -85,6 +107,8 @@ case "$MODE" in
 	echo ''
 	echo '  -s,  --screen			Take, archive, and upload a PNG screenshot'
 	echo '  -js, --jpegscreen		Take, archive, and upload a JPEG screenshot'
+	echo '       --thumb			Take and upload a thumbnail of the screenshot (jpg and png)'
+	echo '				Warning: thumbnail URL will not be inserted into clipboard'
 	echo '  -u,  --upload FILE		Archive and upload specified FILE'
 	echo '       --help			display this help and exit'
 #	echo '       --version			output version information and exit'
@@ -104,14 +128,36 @@ WEB_FILENAME=`md5sum "${LOCAL_DIR}${FILENAME}" | sed -e 's/\([^ ]*\) \(.*\(\..*\
 scp "${LOCAL_DIR}${FILENAME}" "${REMOTE_SCP}${WEB_FILENAME}"
 echo "file uploaded to ${REMOTE_SCP}${WEB_FILENAME}"
 
+THUMBURL=""
+if [ -n "$GEN_THUMBNAIL" ]
+then
+	WEB_THUMBFILENAME=`md5sum "${LOCAL_DIR}${THUMBFILENAME}" | sed -e 's/\([^ ]*\) \(.*\(\..*\)\)$/\1\3/'`
+	scp "${LOCAL_DIR}${THUMBFILENAME}" "${REMOTE_SCP}${WEB_THUMBFILENAME}"
+	echo "thumbnail uploaded to ${REMOTE_SCP}${WEB_THUMBFILENAME}"
+fi
+
 URL=${WEB_URL_BASE}${WEB_FILENAME}
 if [ -n "$WEB_SHORTENER" ]
 then
-	SHORTENER=`curl -L -s ${WEB_SHORTENER}${WEB_FILENAME}`
+	if [ -n "$GEN_THUMBNAIL" ]
+	then
+		SHORTENER=`curl -L -s "${WEB_SHORTENER}${WEB_THUMBFILENAME}"`
+	        if [ "${SHORTENER:0:5}" == 'clear' ]
+	        then
+	                THUMBURL="&thumb=${SHORTENER:7}"
+	        fi
+	fi
+
+	SHORTENER=`curl -L -s "${WEB_SHORTENER}${WEB_FILENAME}${THUMBURL}"`
 	if [ "${SHORTENER:0:5}" == 'clear' ]
 	then
 		URL=${SHORTENER:7}
 	fi
+fi
+
+if [ -n "$GEN_THUMBNAIL" ]
+then
+	rm -f "${LOCAL_DIR}${THUMBFILENAME}"
 fi
 
 echo $URL | xclip -selection clipboard
