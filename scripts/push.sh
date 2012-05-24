@@ -80,7 +80,7 @@ case "$1" in
 	FILENAME=${FILENAME##*/}
 	if [ -n "$GEN_THUMBNAIL" ]
 	then
-		THUMBFILENAME="${FILENAME/.png/-thumb.png}"
+		THUMBFILENAME="${FILENAME/.jpg/-thumb.jpg}"
 	fi
 	chmod 0664 "${LOCAL_DIR}${FILENAME}"
 	echo live screenshot saving to "${LOCAL_DIR}${FILENAME}"
