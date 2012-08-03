@@ -1,7 +1,0 @@
-${if_match "[--datatype=ST]" != "Unknown"}
-${goto 60}${font Ubuntu:size=7,weight:bold}${color slate grey}Now Playing ${color2}${font Ubuntu:size=7,weight:normal}${alignr}[--datatype=PT]/[--datatype=LE]
-${goto 60}[--datatype=AR]
-${goto 60}[--datatype=TI]
-${else}
-${voffset 22}
-${endif}
