@@ -42,8 +42,8 @@ xftalpha 0.5
 uppercase no
 
 default_color 666666
-color1 888888
-color2 AAAAAA
+color1 999999
+color2 B0B0B0
 color3 D6D6D6
 color4 CC3333
 
@@ -56,31 +56,28 @@ ${goto 115}${color4}${font Droid Sans:size=20}${time %e}
 ${goto 105}${color2}${voffset -14}${font Ubuntu:size=9}${time %b}${voffset -2} ${color3}${font ubuntu:size=12}${time %Y}${font}
 
 ${voffset 80}
-${goto 90}${font Ubuntu:size=7,weight:bold}${color}CPU
+${goto 90}${font Ubuntu:size=7,weight:bold}${color}CPU ${goto 130}${font Ubuntu:size=7,weight:normal}${color1}${loadavg}
 ${goto 90}${font Ubuntu:size=7,weight:normal}${color1}${top name 1}${alignr}${top cpu 1}%
 ${goto 90}${font Ubuntu:size=7,weight:normal}${color2}${top name 2}${alignr}${top cpu 2}%
 ${goto 90}${font Ubuntu:size=7,weight:normal}${color3}${top name 3}${alignr}${top cpu 3}%
 #${goto 90}${cpugraph 10,100 AAAAAA AAAAAA}
 #${goto 90}${voffset -10}${font Ubuntu:size=7,weight:normal}${color}${threads} process 
 
-${voffset 40}
-${goto 90}${font Ubuntu:size=7,weight:bold}${color}MEM
+${voffset 20}
+${goto 90}${font Ubuntu:size=7,weight:bold}${color}MEM ${goto 130}${font Ubuntu:size=7,weight:normal}${color1}${mem} / ${memmax}
 ${goto 90}${font Ubuntu:size=7,weight:normal}${color1}${top_mem name 1}${alignr}${top_mem mem 1}%
 ${goto 90}${font Ubuntu:size=7,weight:normal}${color2}${top_mem name 2}${alignr}${top_mem mem 2}%
 ${goto 90}${font Ubuntu:size=7,weight:normal}${color3}${top_mem name 3}${alignr}${top_mem mem 3}%
 
 ${voffset 20}
-${goto 90}${font Ubuntu:size=7,weight:bold}${color}DISKS
+${goto 90}${font Ubuntu:size=7,weight:bold}${color}DISKS ${goto 130}${font Ubuntu:size=7,weight:normal}${color1}${diskio}
+${goto 90}${font Ubuntu:size=7,weight:normal}${color1}used: ${fs_used /home} /home
+${goto 90}${font Ubuntu:size=7,weight:normal}${color1}used: ${fs_used /} /
 
-#${goto 90}${diskiograph 30,100 AAAAAA AAAAAA}
-${voffset -22}
-${goto 90}${font Ubuntu:size=7,weight:normal}${color}used: ${fs_used /home} /home
-${goto 90}${font Ubuntu:size=7,weight:normal}${color}used: ${fs_used /} /
-
-${voffset 33}
+${voffset 30}
 ${goto 90}${font Ubuntu:size=7,weight:bold}${color}BATTERY
-${goto 90}${font Ubuntu:size=7,weight:normal}${color}BAT0${alignr}${battery BAT0}
-${goto 90}${font Ubuntu:size=7,weight:normal}${color}${alignr}${battery_time BAT0}
+${goto 90}${font Ubuntu:size=7,weight:normal}${color1}BAT0${alignr}${battery BAT0}
+${goto 90}${font Ubuntu:size=7,weight:normal}${color1}${alignr}${battery_time BAT0}
 
 ${voffset 170}
 ${color2}${alignc}${font Ubuntu:size=12,weight:bold}${exec whoami}@${nodename}
