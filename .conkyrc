@@ -53,9 +53,10 @@ lua_draw_hook_post main
 TEXT
 ${voffset 35}
 ${goto 115}${color4}${font Droid Sans:size=20}${time %e}
-${goto 105}${color2}${voffset -14}${font Ubuntu:size=9}${time %b}${voffset -2} ${color3}${font ubuntu:size=12}${time %Y}${font}
+${goto 117}${color2}${voffset -16}${font Ubuntu:size=9}${time %b}
+${goto 109}${color2}${voffset 2}${font ubuntu:size=11,weight:normal}${time %Y}${font}
 
-${voffset 80}
+${voffset 65}
 ${goto 90}${font Ubuntu:size=7,weight:bold}${color}CPU ${goto 130}${font Ubuntu:size=7,weight:normal}${color1}${loadavg}
 ${goto 90}${font Ubuntu:size=7,weight:normal}${color1}${top name 1}${alignr}${top cpu 1}%
 ${goto 90}${font Ubuntu:size=7,weight:normal}${color2}${top name 2}${alignr}${top cpu 2}%

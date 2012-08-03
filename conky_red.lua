@@ -38,7 +38,7 @@ clock_m = {
     graph_radius=57,
     graph_thickness=2,
     graph_unit_angle=6,            graph_unit_thickness=6,
-    graph_bg_colour=0x888888,      graph_bg_alpha=0.5,
+    graph_bg_colour=0xA9A9A9,      graph_bg_alpha=0.3,
     graph_fg_colour=0xAAAAAA,      graph_fg_alpha=0.7,
     txt_radius=70,
     txt_weight=0,                  txt_size=10.0,
