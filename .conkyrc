@@ -56,19 +56,19 @@ ${goto 10}${font Droid Sans Mono Slashed:size=32}${color4}${time %H:%M:%S}${font
 ${voffset 5}${alignr 40}${font Droid Sans:size=14}${color2}${time %b} ${time %e} ${time %Y}${font}
 
 ${voffset 15}
-${goto 60}${font Ubuntu:size=7,weight:bold}${color}CPU ${goto 200}${font Ubuntu:size=7,weight:normal}${color1}${loadavg}
+${goto 60}${font Ubuntu:size=7,weight:bold}${color}CPU ${goto 100}${font Ubuntu:size=7,weight:normal}${color1}${loadavg}
 ${goto 60}${font Ubuntu:size=7,weight:normal}${color1}${top name 1}${alignr}${top cpu 1}%
 ${goto 60}${font Ubuntu:size=7,weight:normal}${color2}${top name 2}${alignr}${top cpu 2}%
 ${goto 60}${font Ubuntu:size=7,weight:normal}${color3}${top name 3}${alignr}${top cpu 3}%
 
 ${voffset 20}
-${goto 60}${font Ubuntu:size=7,weight:bold}${color}MEM ${goto 200}${font Ubuntu:size=7,weight:normal}${color1}${mem} / ${memmax}
+${goto 60}${font Ubuntu:size=7,weight:bold}${color}MEM ${goto 100}${font Ubuntu:size=7,weight:normal}${color1}${mem} / ${memmax}
 ${goto 60}${font Ubuntu:size=7,weight:normal}${color1}${top_mem name 1}${alignr}${top_mem mem 1}%
 ${goto 60}${font Ubuntu:size=7,weight:normal}${color2}${top_mem name 2}${alignr}${top_mem mem 2}%
 ${goto 60}${font Ubuntu:size=7,weight:normal}${color3}${top_mem name 3}${alignr}${top_mem mem 3}%
 
 ${voffset 20}
-${goto 60}${font Ubuntu:size=7,weight:bold}${color}DISK ${goto 200}${font Ubuntu:size=7,weight:normal}${color1}${diskio}
+${goto 60}${font Ubuntu:size=7,weight:bold}${color}DISK ${goto 100}${font Ubuntu:size=7,weight:normal}${color1}${diskio}
 ${goto 60}${font Ubuntu:size=7,weight:normal}${color1}used: ${fs_used /home} /home
 ${goto 60}${font Ubuntu:size=7,weight:normal}${color1}used: ${fs_used /} /
 
