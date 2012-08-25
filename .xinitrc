@@ -2,10 +2,10 @@
 
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 export BROWSER=google-chrome
-export DE=openbox
 
 case $WM in
 openbox)
+	export DE=openbox
 	dbus-launch openbox-session
 	;;
 xp)
@@ -15,6 +15,7 @@ ubuntu)
 	VirtualBox -startvm "ubuntu" -fullscreen
 	;;
 *)
+	export DE=openbox
 	dbus-launch openbox-session
 	;;
 esac
