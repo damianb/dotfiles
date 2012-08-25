@@ -8,8 +8,11 @@ case $WM in
 openbox)
 	dbus-launch openbox-session
 	;;
-vm)
+xp)
 	VirtualBox -startvm "Windows XP" -fullscreen
+	;;
+ubuntu)
+	VirtualBox -startvm "ubuntu" -fullscreen
 	;;
 *)
 	dbus-launch openbox-session
