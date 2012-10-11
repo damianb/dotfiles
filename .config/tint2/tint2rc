@@ -8,7 +8,7 @@
 
 rounded = 0
 border_width = 0
-background_color = #000000 10
+background_color = #000000 70
 border_color = #000000 0
 
 rounded = 0
@@ -34,9 +34,10 @@ border_color = #ff0000 90
 #---------------------------------------------
 # PANEL
 #---------------------------------------------
+strut_policy = none
 panel_monitor = all
 panel_position = bottom left
-panel_size = 100% 40k
+panel_size = 100% 35k
 panel_margin = 0 0
 panel_padding = 0 0
 font_shadow = 0
@@ -51,7 +52,7 @@ panel_layer = bottom
 #taskbar_mode = multi_desktop
 taskbar_mode = single_desktop
 taskbar_padding = 5 3 2
-taskbar_background_id = 0
+taskbar_background_id = 1
 #taskbar_active_background_id = 0
 
 #---------------------------------------------
@@ -59,9 +60,9 @@ taskbar_background_id = 0
 #---------------------------------------------
 task_icon = 1
 task_text = 0
-task_maximum_size = 40 32
+task_maximum_size = 32 18
 task_centered = 1
-task_padding = 3 3
+task_padding = 3 0
 task_font = Sansation 7
 task_font_color = #ffffff 60
 task_background_id = 3
@@ -81,8 +82,8 @@ urgent_nb_of_blink = 3
 # SYSTRAYBAR
 #---------------------------------------------
 systray = 1
-systray_padding = 5 8 5
-systray_background_id = 0
+systray_padding = 5 2 5
+systray_background_id = 1
 systray_sort = left2right
 systray_icon_size = 20
 systray_icon_asb = 100 0 0

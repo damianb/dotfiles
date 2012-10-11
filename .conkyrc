@@ -1,78 +1,40 @@
-#==============================================================================
-#                                  conkyrc_red
-#
-#  author  : SLK
-#  version : v2011011601
-#  license : Distributed under the terms of GNU GPL version 2 or later
-#
-#==============================================================================
+alignment                 top_middle
+background                no
+border_width              0
+cpu_avg_samples           5
+default_color             cccccc
+default_outline_color     white
+draw_borders              no
+draw_graph_borders        no
+draw_outline              no
+draw_shades               no
+use_xft                   yes
+xftfont                   Droid Sans Mono:size=8
+xftalpha                  1
+gap_x                     0
+gap_y                     0
+minimum_size              1366 0
+maximum_width             1366
+net_avg_samples           2
+no_buffers                yes
+out_to_console            no
+own_window                yes
+own_window_class          Conky
+own_window_type           normal
+own_window_argb_visual    yes
+own_window_argb_value     179
+own_window_transparent    no
+own_window_colour         black
+own_window_hints          undecorated,below,sticky,skip_taskbar,skip_pager
+update_interval           1
+uppercase                 no
+use_spacer                left
+use_spacer                right
+double_buffer             yes
+short_units               yes
+pad_percents              1
+text_buffer_size          512
+temperature_unit          celsius
 
-background yes
-update_interval 1
-update_interval_on_battery 3
-
-cpu_avg_samples 2
-net_avg_samples 2
-temperature_unit celsius
-
-double_buffer yes
-no_buffers yes
-text_buffer_size 2048
-
-gap_x 5
-gap_y 5
-minimum_size 220 330
-maximum_width 330
-own_window yes
-own_window_type override
-own_window_transparent yes
-own_window_hints undecorate,sticky,skip_taskbar,skip_pager,below
-border_inner_margin 0
-border_outer_margin 0
-alignment tr
-
-draw_shades no
-draw_outline no
-draw_borders no
-draw_graph_borders no
-
-override_utf8_locale yes
-use_xft yes
-xftfont caviar dreams:size=8
-xftalpha 0.5
-uppercase no
-
-default_color 666666
-color1 999999
-color2 B0B0B0
-color3 D6D6D6
-color4 CC3333
-
-lua_load ~/conky_red.lua
-lua_draw_hook_post main
-
-TEXT 
-${goto 10}${font Droid Sans Mono Slashed:size=32}${color4}${time %H:%M:%S}${font}
-${voffset 5}${alignr 40}${font Droid Sans:size=14}${color2}${time %b} ${time %e} ${time %Y}${font}
-
-${voffset 15}
-${goto 60}${font Ubuntu:size=7,weight:bold}${color}CPU ${goto 100}${font Ubuntu:size=7,weight:normal}${color1}${loadavg}
-${goto 60}${font Ubuntu:size=7,weight:normal}${color1}${top name 1}${alignr}${top cpu 1}%
-${goto 60}${font Ubuntu:size=7,weight:normal}${color2}${top name 2}${alignr}${top cpu 2}%
-${goto 60}${font Ubuntu:size=7,weight:normal}${color3}${top name 3}${alignr}${top cpu 3}%
-
-${voffset 20}
-${goto 60}${font Ubuntu:size=7,weight:bold}${color}MEM ${goto 100}${font Ubuntu:size=7,weight:normal}${color1}${mem} / ${memmax}
-${goto 60}${font Ubuntu:size=7,weight:normal}${color1}${top_mem name 1}${alignr}${top_mem mem 1}%
-${goto 60}${font Ubuntu:size=7,weight:normal}${color2}${top_mem name 2}${alignr}${top_mem mem 2}%
-${goto 60}${font Ubuntu:size=7,weight:normal}${color3}${top_mem name 3}${alignr}${top_mem mem 3}%
-
-${voffset 20}
-${goto 60}${font Ubuntu:size=7,weight:bold}${color}DISK ${goto 100}${font Ubuntu:size=7,weight:normal}${color1}${diskio}
-${goto 60}${font Ubuntu:size=7,weight:normal}${color1}used: ${fs_used /home} /home
-${goto 60}${font Ubuntu:size=7,weight:normal}${color1}used: ${fs_used /} /
-
-${voffset 30}
-${goto 60}${font Ubuntu:size=7,weight:bold}${color}BATTERY
-${goto 60}${font Ubuntu:size=7,weight:normal}${color1}BAT0${alignr}${battery BAT0}
-${goto 60}${font Ubuntu:size=7,weight:normal}${color1}${alignr}${battery_time BAT0}
+TEXT
+${voffset 4}${color #aaaaff}${font OpenLogos:size=12}a${font}${color} ${offset 30}${voffset -4} ${kernel} ${color #999999}::${color} ${uptime} ${color #999999}::${color} ${acpitemp}°C ${color #999999}::${color} / ${fs_used_perc /}%, /home ${fs_used_perc /home}% ${color #999999}::${color} Battery: ${battery_percent BAT0}% ${battery BAT0} ${alignr}${offset -10} CPU: ${cpugraph cpu0 12,80 00ff00 ff0000 -t} (${cpu cpu1}%/${cpu cpu2}%) ${color #999999}::${color} Mem: ${memgraph 12,80 00ff00 ff0000 -t} (${memperc}%)   ${color #ffffff}${time %B %e, %Y %I:%M:%S %p}${color}

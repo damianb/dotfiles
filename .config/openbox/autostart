@@ -1,3 +1,6 @@
-tint2 -c ~/tint2.conf &
-eval $(cat ~/.fehbg)
-conky -c /home/katana/.conky/conkyrc_red &
+tint2 &
+conky -q &
+volumeicon -b &
+nitrogen --restore &
+xcompmgr &
+dunst -b &
