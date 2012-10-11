@@ -20,7 +20,7 @@ no_buffers                yes
 out_to_console            no
 own_window                yes
 own_window_class          Conky
-own_window_type           normal
+own_window_type           override
 own_window_argb_visual    yes
 own_window_argb_value     179
 own_window_transparent    no
