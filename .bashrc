@@ -19,3 +19,4 @@ alias pushfile="/home/katana/push.sh -u"
 alias steam='WINEDEBUG=-all wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe >/dev/null 2>&1 &'
 alias listps='ps aux | grep -v "ps aux" | grep -Ev "\[.+\]" | grep -v grep'
 alias j="autojump"
+alias sys="systemctl"
