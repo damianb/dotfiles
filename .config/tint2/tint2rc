@@ -35,9 +35,9 @@ border_color = #ff0000 90
 # PANEL
 #---------------------------------------------
 strut_policy = none
-panel_monitor = all
-panel_position = bottom left
-panel_size = 100% 35k
+panel_monitor = 1
+panel_position = bottom left vertical
+panel_size = 732 46
 panel_margin = 0 0
 panel_padding = 0 0
 font_shadow = 0
@@ -45,6 +45,8 @@ panel_background_id = 0
 wm_menu = 0
 panel_dock = 0
 panel_layer = bottom
+panel_items = CBSTL
+#LTSBC
 
 #---------------------------------------------
 # TASKBAR
@@ -60,9 +62,9 @@ taskbar_background_id = 1
 #---------------------------------------------
 task_icon = 1
 task_text = 0
-task_maximum_size = 32 18
+task_maximum_size = 34 34
 task_centered = 1
-task_padding = 3 0
+task_padding = 3 3
 task_font = Sansation 7
 task_font_color = #ffffff 60
 task_background_id = 3
@@ -81,11 +83,11 @@ urgent_nb_of_blink = 3
 #---------------------------------------------
 # SYSTRAYBAR
 #---------------------------------------------
-systray = 1
+systray = 0
 systray_padding = 5 2 5
 systray_background_id = 1
 systray_sort = left2right
-systray_icon_size = 20
+systray_icon_size = 22
 systray_icon_asb = 100 0 0
 
 #---------------------------------------------

@@ -37,8 +37,8 @@ text_buffer_size          512
 temperature_unit          celsius
 
 TEXT
-${offset 5}${voffset 4}${color #aaaaff}${font OpenLogos:size=24}a${font}${color} ${offset 12}${voffset -20} ${kernel} ${color #999999}::${color} ${uptime} ${color #999999}::${color} \
-Battery: ${battery_time BAT0} ${battery BAT0} ${alignr}${offset -10} CPU: ${cpugraph cpu0 12,80 00ff00 ff0000 -t} \
-(${cpu cpu1}%/${cpu cpu2}%)   ${voffset 8}${color #ffffff}${time %B %e, %Y %I:%M:%S %p}${color}${voffset -8}
+${offset 9}${voffset 4}${color #aaaaff}${font OpenLogos:size=24}a${font}${color} ${offset 12}${voffset -20} ${kernel} ${color #999999}::${color} ${uptime} ${color #999999}::${color} \
+Battery: ${battery_time BAT0} ${battery BAT0} ${alignr}${offset -10} CPU: (${cpu cpu1}%/${cpu cpu2}%) \
+${cpugraph cpu0 12,80 00ff00 ff0000 -t}   ${voffset 8}${color #ffffff}${time %B %e, %Y %I:%M:%S %p}${color}${voffset -8}
 ${voffset 2}${offset 58}${acpitemp}°C ${color #999999}::${color} Disk: / ${fs_used_perc /}%, /home ${fs_used_perc /home}% \
-(${diskio})${alignr}${offset -227}Mem: ${memgraph 12,80 00ff00 ff0000 -t} (${memperc}%/${swapperc}%)
+(${diskio})${alignr}${offset -227}Mem: (${memperc}%/${swapperc}%) ${memgraph 12,80 00ff00 ff0000 -t}
