@@ -13,10 +13,9 @@ alias mkc=mkdircd
 
 # push script aliases
 alias irc="TERM=xterm;ssh -t serenity /home/katana/scripts/weechat.sh"
-alias push="/home/katana/push.sh"
-alias pushscreen="/home/katana/push.sh -s"
-alias pushfile="/home/katana/push.sh -u"
 alias steam='WINEDEBUG=-all wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe >/dev/null 2>&1 &'
 alias listps='ps aux | grep -v "ps aux" | grep -Ev "\[.+\]" | grep -v grep'
-alias j="autojump"
 alias sys="systemctl"
+if [ "$PS1" ]; then
+    complete -cf sudo
+fi
