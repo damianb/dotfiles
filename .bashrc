@@ -11,11 +11,28 @@ alias ll="ls -lAFh"
 function mkdircd() { mkdir $1; cd $1; }
 alias mkc=mkdircd
 
-# push script aliases
+# script aliases
 alias irc="TERM=xterm;ssh -t serenity /home/katana/scripts/weechat.sh"
 alias steam='WINEDEBUG=-all wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe >/dev/null 2>&1 &'
 alias listps='ps aux | grep -v "ps aux" | grep -Ev "\[.+\]" | grep -v grep'
 alias sys="systemctl"
+source /etc/profile.d/autojump.bash
+#alias j="cd `autojump -b $1`"
+
+# git aliases
+alias gs="git status"
+alias ga="git add"
+alias gp="git push"
+alias compile="g++"
+alias gg="git pull"
+function gitcommit {
+	m=$@
+	m=$(printf " %s" "${m[@]}")
+        m=${m:1}
+        git commit -m "$m"
+}
+alias gc=gitcommit
+
 if [ "$PS1" ]; then
     complete -cf sudo
 fi
