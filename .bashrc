@@ -21,6 +21,7 @@ alias mkc=mkdircd
 alias irc="TERM=xterm;ssh -t serenity /home/katana/scripts/weechat.sh"
 alias listps='ps aux | grep -v "ps aux" | grep -Ev "\[.+\]" | grep -v grep'
 alias memoryhog="ps aux | sort -nk +4 | tail"
+alias ts="date +%s"
 [ -x /usr/bin/systemctl ] && sys="systemctl"
 [ -x /usr/bin/htop ] && alias top=htop
 
