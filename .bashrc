@@ -1,4 +1,4 @@
-export EDITOR=nano
+export EDITOR=nano # fuck you all, emacs and vim just take too much twister
 # set PS1, depends on git...
 if [ -x ~/.git-prompt.sh ]; then
 	source ~/.git-prompt.sh
@@ -21,9 +21,14 @@ alias mkc=mkdircd
 alias irc="TERM=xterm;ssh -t serenity /home/katana/scripts/weechat.sh"
 alias listps='ps aux | grep -v "ps aux" | grep -Ev "\[.+\]" | grep -v grep'
 alias memoryhog="ps aux | sort -nk +4 | tail"
+alias netconnections="netstat -tuapw --numeric-hosts --numeric-ports"
 alias ts="date +%s"
-[ -x /usr/bin/systemctl ] && sys="systemctl"
+[ -x /usr/bin/systemctl ] && sys="systemctl" # a symlink in /usr/bin works better to be honest
 [ -x /usr/bin/htop ] && alias top=htop
+
+if [ "$PS1" ]; then
+    complete -cf sudo
+fi
 
 # git aliases
 alias gs="git status"
@@ -39,10 +44,6 @@ function gitcommit {
         git commit -m "$m"
 }
 alias gc=gitcommit
-
-if [ "$PS1" ]; then
-    complete -cf sudo
-fi
 
 # easy extract, nabbed from reddit.
 extract () {
