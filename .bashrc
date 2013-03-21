@@ -29,6 +29,9 @@ alias mkc=mkdircd
 alias irc="TERM=xterm;ssh -t serenity /home/katana/scripts/weechat.sh"
 alias listps='ps aux | grep -v "ps aux" | grep -Ev "\[.+\]" | grep -v grep'
 alias memoryhog="ps aux | sort -nk +4 | tail"
+alias sizehog="du -hd 1"
+alias du="du -h"
+alias df="df -h"
 alias netconnections="netstat -tuapw --numeric-hosts --numeric-ports"
 alias ts="date +%s"
 [ -x /usr/bin/systemctl ] && sys="systemctl" # a symlink in /usr/bin works better to be honest
