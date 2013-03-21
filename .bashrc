@@ -5,9 +5,17 @@ if [ -x ~/.git-prompt.sh ]; then
 	export GIT_PS1_SHOWDIRTYSTATE=1
 	export GIT_PS1_SHOWUNTRACKEDFILES=1
 	export GIT_PS1_SHOWUPSTREAM="auto"
-	export PS1="\[\e[32;1m\]:\[\e[0m\]\[\e[37;1m\]\u\[\e[37;1m\]@\h \[\e[34;1m\]\w/ \n\[\e[33m\]\$(__git_ps1 '(%s) ')\[\e[0m\]\[\e[32m\]\$\[\e[0m\] "
+	if [ $UID -eq 0 ]; then
+		export PS1="\[\e[32;1m\]:\[\e[0m\]\[\e[37;1m\]\u\[\e[37;1m\]@\h \[\e[34;1m\]\w/ \n\[\e[33m\]\$(__git_ps1 '(%s) ')\[\e[0m\]\[\e[31m\]#\[\e[0m\] "
+	else
+		export PS1="\[\e[32;1m\]:\[\e[0m\]\[\e[37;1m\]\u\[\e[37;1m\]@\h \[\e[34;1m\]\w/ \n\[\e[33m\]\$(__git_ps1 '(%s) ')\[\e[0m\]\[\e[32m\]\$\[\e[0m\] "
+	fi
 else
-	export PS1="\[\e[32;1m\]:\[\e[0m\]\[\e[37;1m\]\u\[\e[37;1m\]@\h \[\e[34;1m\]\w/ \n\[\e[33m\]\[\e[0m\]\[\e[32m\]\$\[\e[0m\] "
+	if [ $UID -eq 0 ]; then
+		export PS1="\[\e[32;1m\]:\[\e[0m\]\[\e[37;1m\]\u\[\e[37;1m\]@\h \[\e[34;1m\]\w/ \n\[\e[33m\]\[\e[0m\]\[\e[31m\]#\[\e[0m\] "
+	else
+		export PS1="\[\e[32;1m\]:\[\e[0m\]\[\e[37;1m\]\u\[\e[37;1m\]@\h \[\e[34;1m\]\w/ \n\[\e[33m\]\[\e[0m\]\[\e[32m\]\$\[\e[0m\] "
+	fi
 fi
 
 [ -x /etc/profile.d/autojump.bash ] && source /etc/profile.d/autojump.bash
