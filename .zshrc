@@ -15,7 +15,7 @@ alias mkc=mkdircd
 alias irc="TERM=xterm;ssh -t serenity /home/katana/scripts/weechat.sh"
 alias listps='ps aux | grep -v "ps aux" | grep -Ev "\[.+\]" | grep -v grep'
 alias memoryhog="ps aux | sort -nk +4 | tail -n 20"
-alias sizehog="du -hd 1 $@ | sort -h | tail -n 21 | head -n 20"
+function sizehog() { du -hd 1 $@ | sort -h | tail -n 21 | head -n 20; }
 alias du="du -h"
 alias df="df -h"
 alias netconnections="netstat -tuapw --numeric-hosts --numeric-ports"
@@ -56,5 +56,22 @@ function extract {
 }
 alias ex=extract
 
-autoload -Uz compinit colors promptinit && colors && promptinit && compinit
+autoload -Uz compinit colors promptinit zkbd && colors && promptinit && compinit
 PROMPT="%{$fg[green]$bold_color%}:%{$reset_color$fg[white]$bold_color%}%n%{$fg[white]$bold_color%}@%m %{$fg[blue]$bold_color%}%~/ $prompt_newline%{$fg[yellow]$reset_color$fg[green]%}$%{$reset_color%} "
+
+# binds 
+#[[ ! -f ${ZDOTDIR:-$HOME}/.zkbd/$TERM-$VENDOR-$OSTYPE ]] && zkbd
+#source ${ZDOTDIR:-$HOME}/.zkbd/$TERM-$VENDOR-$OSTYPE
+source ${ZDOTDIR:-$HOME}/.zkbd/xterm-:0
+
+[[ -n ${key[Backspace]} ]] && bindkey "${key[Backspace]}" backward-delete-char
+[[ -n ${key[Insert]} ]] && bindkey "${key[Insert]}" overwrite-mode
+[[ -n ${key[Home]} ]] && bindkey "${key[Home]}" beginning-of-line
+[[ -n ${key[PageUp]} ]] && bindkey "${key[PageUp]}" up-line-or-history
+[[ -n ${key[Delete]} ]] && bindkey "${key[Delete]}" delete-char
+[[ -n ${key[End]} ]] && bindkey "${key[End]}" end-of-line
+[[ -n ${key[PageDown]} ]] && bindkey "${key[PageDown]}" down-line-or-history
+[[ -n ${key[Up]} ]] && bindkey "${key[Up]}" up-line-or-search
+[[ -n ${key[Left]} ]] && bindkey "${key[Left]}" backward-char
+[[ -n ${key[Down]} ]] && bindkey "${key[Down]}" down-line-or-search
+[[ -n ${key[Right]} ]] && bindkey "${key[Right]}" forward-char
