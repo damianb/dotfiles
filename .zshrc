@@ -62,10 +62,10 @@ alias ex=extract
 autoload -Uz compinit colors promptinit zkbd && colors && promptinit && compinit
 PROMPT="%{$fg[green]$bold_color%}:%{$reset_color$fg[white]$bold_color%}%n%{$fg[white]$bold_color%}@%m %{$fg[blue]$bold_color%}%~/ $prompt_newline%{$fg[yellow]$reset_color$fg[green]%}$%{$reset_color%} "
 
-# binds 
-#[[ ! -f ${ZDOTDIR:-$HOME}/.zkbd/$TERM-$VENDOR-$OSTYPE ]] && zkbd
-#source ${ZDOTDIR:-$HOME}/.zkbd/$TERM-$VENDOR-$OSTYPE
-source ${ZDOTDIR:-$HOME}/.zkbd/xterm-:0
+# binds
+[[ ! -f ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE} ]] && zkbd
+source ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
+#source ${ZDOTDIR:-$HOME}/.zkbd/xterm-:0
 
 [[ -n ${key[Backspace]} ]] && bindkey "${key[Backspace]}" backward-delete-char
 [[ -n ${key[Insert]} ]] && bindkey "${key[Insert]}" overwrite-mode
@@ -78,3 +78,22 @@ source ${ZDOTDIR:-$HOME}/.zkbd/xterm-:0
 [[ -n ${key[Left]} ]] && bindkey "${key[Left]}" backward-char
 [[ -n ${key[Down]} ]] && bindkey "${key[Down]}" down-line-or-search
 [[ -n ${key[Right]} ]] && bindkey "${key[Right]}" forward-char
+
+case "$TERM" in
+xterm*|rxvt*)
+	preexec () {
+		if [[ $1 != ^%m ]] then;
+			print -Pn "\e]0;/bin/zsh\a"
+		else
+			print -Pn "\e]0;$1\a"
+		fi
+	}
+	precmd() {
+		print -Pn "\e]0;/bin/zsh\a"
+	}
+	#precmd() { print -Pn "\e]0;%m:%~\a" }
+	#preexec () { print -Pn "\e]0;$1\a" }
+	;;
+*)
+	;;
+esac
