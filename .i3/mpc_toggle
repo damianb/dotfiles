@@ -1,0 +1,12 @@
+#! /bin/zsh
+# http://blog.rarmknecht.com/?p=221
+
+# 0 is stopped
+# 1 is playing
+if [[ $(mpc | grep playing| wc -l) -eq 1 ]]; then
+	mpc pause > /dev/null
+else
+	mpc play > /dev/null
+fi
+
+exit 0

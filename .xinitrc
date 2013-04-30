@@ -15,7 +15,7 @@ i3)
 	start-pulseaudio-x11 &
 	dunst -b &
 	mpd &
-	exec dbus-launch --exit-with-session --sh-syntax i3 -V -d all > ~/.i3/log/i3-$(date +'%F-%k-%M-%S') 2>&1
+	exec dbus-launch --exit-with-session --sh-syntax i3 -V -d all > /home/katana/.i3/i3.log 2>&1
 	;;
 xp)
 	VirtualBox -startvm "Windows XP" -fullscreen
@@ -27,6 +27,6 @@ xp)
 	start-pulseaudio-x11 &
 	dunst -b &
 	mpd &
-	exec dbus-launch --exit-with-session --sh-syntax i3 > ~/.i3/log/i3-$(date +'%F-%k-%M-%S') 2>&1
+	exec dbus-launch --exit-with-session --sh-syntax i3 -V -d all > /home/katana/.i3/i3.log 2>&1
 	;;
 esac
