@@ -15,7 +15,7 @@ alias grep='grep --color=auto'
 alias ll="ls -lAFh"
 function mkdircd() { mkdir $1; cd $1; }
 alias mkc=mkdircd
-alias irc="TERM=xterm;ssh -t serenity /home/katana/scripts/weechat.sh"
+alias irc="TERM=xterm;ssh -t solanine /home/katana/scripts/weechat.sh"
 alias listps='ps aux | grep -v "ps aux" | grep -Ev "\[.+\]" | grep -v grep'
 alias memoryhog="ps aux | sort -nk +4 | tail -n 20"
 function sizehog() { du -hd 1 $@ | sort -h | tail -n 21 | head -n 20; }
