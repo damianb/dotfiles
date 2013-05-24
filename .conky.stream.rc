@@ -32,5 +32,5 @@ TEXT
 \
 {"full_text":"time","color":"\#EAD0C7","separator":false,"separator_block_width":3},\
 {"full_text":"»","color":"\#FFFFFF","separator":false,"separator_block_width":10},\
-{"full_text":"${time %a %m %d, %y %H:%M:%S}","color":"\#EAD0C7","separator":false,"separator_block_width":12}\
+{"full_text":"${time %a %b %d, %Y %H:%M:%S}","color":"\#EAD0C7","separator":false,"separator_block_width":12}\
 ],
