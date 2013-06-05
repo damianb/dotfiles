@@ -1,9 +1,11 @@
 #!/bin/bash
 
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
-export BROWSER=google-chrome
+export BROWSER=firefox
+export EDITOR=nano
 
 case $DE in
+
 openbox)
 	export DE=openbox
 	dbus-launch openbox-session
@@ -16,9 +18,6 @@ i3)
 	dunst -b &
 	mpd &
 	exec dbus-launch --exit-with-session --sh-syntax i3 -V -d all > /home/katana/.i3/i3.log 2>&1
-	;;
-xp)
-	VirtualBox -startvm "Windows XP" -fullscreen
 	;;
 *)
 	export DE=i3
