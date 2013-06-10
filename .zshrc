@@ -27,6 +27,7 @@ alias du="du -h"
 alias df="df -h"
 alias netconnections="netstat -tuapw --numeric-hosts --numeric-ports"
 alias ts="date +%s"
+alias sx="startx"
 
 alias gs="git status"
 alias ga="git add"
