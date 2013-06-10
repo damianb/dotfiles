@@ -3,6 +3,10 @@ HISTSIZE=1000
 SAVEHIST=3000
 setopt appendhistory autocd extendedglob prompt_subst extended_history histignorespace completeinword nohup auto_pushd nobeep noglobdots
 
+if [ -d "$HOME/node_modules/.bin/" ]; then
+	export PATH=$PATH:$HOME/node_modules/.bin/
+fi
+
 zstyle :compinstall filename '/home/katana/.zshrc'
 zstyle ':completion:*:default'         list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*:approximate:'    max-errors 'reply=( $((($#PREFIX+$#SUFFIX)/3 )) numeric )'
