@@ -1,0 +1,71 @@
+diff --git a/symbols/pc b/symbols/pc
+index 9f3da66..4bb6c02 100644
+--- a/symbols/pc
++++ b/symbols/pc
+@@ -141,9 +141,29 @@ xkb_symbols "editing" {
+     key  <END> {	[  End			]	};
+     key <PGDN> {	[  Next			]	};
+ 
+-    key   <UP> {	[  Up			]	};
++    key <UP> {
++        type="ARROW",
++        repeat=yes,
++        [ Up, Up, Prior, Home ],
++        actions[Group1] = [
++            NoAction(),
++            NoAction(),
++            RedirectKey(key=<PGUP>, clearmods=Alt),
++            RedirectKey(key=<HOME>, clearmods=Control+Alt)
++        ]
++    };
++    key <DOWN> {
++        type="ARROW",
++        repeat=yes,
++        [ Down, Down, Next, End ],
++        actions[Group1] = [
++            NoAction(),
++            NoAction(),
++            RedirectKey(key=<PGDN>, clearmods=Alt),
++            RedirectKey(key=<END>, clearmods=Control+Alt)
++        ]
++    };
++
+     key <LEFT> {	[  Left			]	};
+-    key <DOWN> {	[  Down			]	};
+     key <RGHT> {	[  Right		]	};
+ };
+-
+diff --git a/types/basic b/types/basic
+index cf1ee64..a48e26c 100644
+--- a/types/basic
++++ b/types/basic
+@@ -5,6 +5,7 @@ default xkb_types "basic" {
+     // Fairly standard definitions for
+     // the four required key types
+ 
++    virtual_modifiers Alt;
+     virtual_modifiers NumLock;
+ 
+     type "ONE_LEVEL" {
+@@ -28,4 +29,21 @@ default xkb_types "basic" {
+         level_name[Level2] = "Caps";
+     };
+ 
++    // Extra type for up and down arrow keys, which we modify to send
++    // Page Up and Page Down.
++    type "ARROW" {
++        modifiers              = Shift+Lock+Alt+Control;
++        map[Shift]             = Level2;
++        map[Lock]              = Level2;
++        map[Alt]               = Level3;
++        map[Alt+Shift]         = Level3;
++        map[Alt+Lock]          = Level3;
++        map[Control+Alt]       = Level4;
++        map[Control+Alt+Shift] = Level4;
++        map[Control+Alt+Lock]  = Level4;
++        level_name[Level1]     = "Base";
++        level_name[Level2]     = "Caps";
++        level_name[Level3]     = "Alt";
++        level_name[Level4]     = "ControlAlt";
++    };
+ };

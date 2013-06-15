@@ -1,0 +1,21 @@
+diff --git a/symbols/pc b/symbols/pc
+index 9f3da66..4849186 100644
+--- a/symbols/pc
++++ b/symbols/pc
+@@ -19,7 +19,15 @@ xkb_symbols "pc105" {
+     include "pc(editing)"
+     include "keypad(x11)"
+ 
+-    key <BKSP> {	[ BackSpace	]	};
++    key <BKSP> {
++        type="TWO_LEVEL",
++        repeat=yes,
++        [ BackSpace, Delete ],
++        actions[Group1] = [
++            NoAction(),
++            RedirectKey(key=<DELE>, clearmods=Shift)
++        ]
++    };
+ 
+     key  <TAB> {	[ Tab,	ISO_Left_Tab	]	};
+     key <RTRN> {	[ Return	]	};
