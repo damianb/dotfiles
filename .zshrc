@@ -67,6 +67,7 @@ alias ga="git add"
 alias gp="git push"
 alias gg="git pull"
 
+unalias gc
 function gc {
     m=$@
     m=$(printf " %s" "${m[@]}") # i should use sed for this...but meh, fuck it
