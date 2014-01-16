@@ -8,7 +8,7 @@ ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg_bold[white]%}[%{$reset_color%}git:%{$fg[cyan
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$fg_bold[white]%}]%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[white]%}:%{$fg[red]%}[dirty]"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
-if [[ $UID -eq 1000 ]]; then
+if [[ $UID -eq 0 ]]; then
     CARETCOLOR="red"
     CARET="#"
 else
