@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="ys-custom"
+ZSH_THEME="crimson"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -68,10 +68,10 @@ alias gp="git push"
 alias gg="git pull"
 
 unalias gc
-function gc {
+function gcommit {
     m=$@
     m=$(printf " %s" "${m[@]}") # i should use sed for this...but meh, fuck it
     m=${m:1}
     git commit -m "$m"
 }
-
+alias gc="gcommit"
