@@ -76,4 +76,4 @@ PROMPT="%(?.%{$BGREY%}.%{$RED%})::%{$RESET%} \
 %{$BYELLOW%}[%{$RESET%}%{$WHITE%}%n@%{$HOST%}%{$BYELLOW%}]%{$RESET%} \
 %{$BBLUE%}${CURRENT_DIR}%{$RESET%}\
 %{$GIT_STAT%} 
-%{$CARET_COLOR%}%{$CARET%} %{$RESET%}"
+%{$CARET_COLOR%}$CARET %{$RESET%}"
