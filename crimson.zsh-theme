@@ -1,18 +1,45 @@
-# these are simply provided to make the prompt more readable...or at least make an attempt at it
-local RED=$fg[red]
-local BRED=$fg_bold[red]
-local GREEN=$fg[green]
-local BGREEN=$fg_bold[green]
-local BBLUE=$fg_bold[blue]
-local BYELLOW=$fg_bold[yellow]
-local BGREY=$fg_bold[grey]
-local CYAN=$fg[cyan]
-local BWHITE=$fg_bold[white]
-local WHITE=$fg[white]
-local RESET=$reset_color
+#
+#   crimson oh-my-zsh theme
+#   copyright (c) 2013 Damian Bushong
+#
+#   license: MIT license (full text as follows)
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a copy
+#   of this software and associated documentation files (the "Software"), to deal
+#   in the Software without restriction, including without limitation the rights
+#   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+#   copies of the Software, and to permit persons to whom the Software is
+#   furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included in
+#   all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+#   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+#   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+#   THE SOFTWARE.
+#
 
-local CURRENT_DIR="${PWD/#$HOME/~}"
-local HOST=$(hostname -s)
+
+# these are simply provided to make the prompt more readable...or at least make an attempt at it
+local RED="%{$fg[red]%}"
+local BRED="%{$fg_bold[red]%}"
+local GREEN="%{$fg[green]%}"
+local BGREEN="%{$fg_bold[green]%}"
+local BBLUE="%{$fg_bold[blue]%}"
+local BYELLOW="%{$fg_bold[yellow]%}"
+local BGREY="%{$fg_bold[grey]%}"
+local CYAN="%{$fg[cyan]%}"
+local BWHITE="%{$fg_bold[white]%}"
+local WHITE="%{$fg[white]%}"
+local RESET="%{$reset_color%}"
+
+local CURRENT_DIR='${PWD/#$HOME/~}'
+local GIT_STAT='$(git_prompt_info)'
+local HOST='$(hostname -s)'
 local CARET_COLOR=$GREEN
 local CARET="$"
 local CONNECTION=""
@@ -21,7 +48,7 @@ local CONNECTION=""
 # this is intended to provide simple data, nothing more, to keep focus on output
 ZSH_THEME_GIT_PROMPT_PREFIX=" %{$BWHITE%}[%{$RESET%}git:%{$CYAN%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$BWHITE%}]%{$RESET%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$WHITE%}:%{$RED%}[dirty]"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$WHITE%}:%{$RESET%}%{$RED%}[dirty]%{$RESET%}"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 
 # change prompt caret and color if we're root (uid 1)
@@ -32,7 +59,7 @@ fi
 
 # if it's an ssh connection, display an arrow to indicate this
 if [[ -n $SSH_CONNECTION ]]; then
-    CONNECTION="%{$GREEN%}-> %{$RESET%}"
+    CONNECTION="%{$GREEN%}->%{$RESET%} "
 fi
 
 #
@@ -44,7 +71,9 @@ fi
 # then newline, and caret
 #
 
-PROMPT="%(?.%{$BGREY%}.%{$RED%})::%{$RESET%} ${CONNECTION}\
+PROMPT="%(?.%{$BGREY%}.%{$RED%})::%{$RESET%} \
+%{${CONNECTION}%}\
 %{$BYELLOW%}[%{$RESET%}%{$WHITE%}%n@%{$HOST%}%{$BYELLOW%}]%{$RESET%} \
-%{$BBLUE%}${CURRENT_DIR}%{$RESET%}${git_prompt_info} 
-%{$CARET_COLOR%}$CARET %{$RESET%}"
+%{$BBLUE%}${CURRENT_DIR}%{$RESET%}\
+%{$GIT_STAT%} 
+%{$CARET_COLOR%}%{$CARET%} %{$RESET%}"
