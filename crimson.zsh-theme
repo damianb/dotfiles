@@ -73,7 +73,7 @@ fi
 
 PROMPT="%(?.%{$BGREY%}.%{$RED%})::%{$RESET%} \
 %{${CONNECTION}%}\
-%{$BYELLOW%}[%{$RESET%}%{$WHITE%}%n@%{$HOST%}%{$BYELLOW%}]%{$RESET%} \
+%{$BYELLOW%}[%{$RESET%}%{$BWHITE%}%n@%{$HOST%}%{$BYELLOW%}]%{$RESET%} \
 %{$BBLUE%}${CURRENT_DIR}%{$RESET%}\
 %{$GIT_STAT%} 
 %{$CARET_COLOR%}%{$CARET%} %{$RESET%}"
