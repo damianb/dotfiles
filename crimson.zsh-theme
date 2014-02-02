@@ -32,7 +32,7 @@ fi
 
 # if it's an ssh connection, display an arrow to indicate this
 if [[ -n $SSH_CONNECTION ]]; then
-    CONNECTION="%{$GREEN%}-> %{$RESET}"
+    CONNECTION="%{$GREEN%}-> %{$RESET%}"
 fi
 
 #
