@@ -69,9 +69,19 @@ alias gg="git pull"
 
 unalias gc
 function gcommit {
-    m=$@
-    m=$(printf " %s" "${m[@]}") # i should use sed for this...but meh, fuck it
-    m=${m:1}
-    git commit -m "$m"
+  m=$@
+  m=$(printf " %s" "${m[@]}") # i should use sed for this...but meh, fuck it
+  m=${m:1}
+  git commit -m "$m"
 }
 alias gc="gcommit"
+function ss {
+	UUID=$(uuidgen -r)
+	scrot $HOME/.ss/$UUID.png && \
+	scp -q $HOME/.ss/$UUID.png solanine:/home/katana/http/i/ && \
+	echo "http://odios.us/~/i/$UUID.png" | xclip -selection clipboard
+}
+
+source ~/.nvm/nvm.sh
+
+export PATH="$PATH:$HOME/.bin"
