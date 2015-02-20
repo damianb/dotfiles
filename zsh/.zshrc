@@ -41,6 +41,14 @@ function gcommit {
 }
 alias gc="gcommit"
 
+function gscommit {
+  m=$@
+  m=$(printf " %s" "${m[@]}") # i should use sed for this...but meh, fuck it
+  m=${m:1}
+  git commit -S -m "$m"
+}
+alias gsc="gscommit"
+
 case `hostname` in
 	# server
 	(solanine.odios.us) 
