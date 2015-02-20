@@ -1,0 +1,43 @@
+alignment bottom_right
+background yes
+border_width 0
+cpu_avg_samples 5
+default_color cccccc
+default_outline_color white
+draw_borders no
+draw_graph_borders no
+draw_outline no
+draw_shades no
+use_xft yes
+xftfont Droid Sans Mono:size=8
+xftalpha 1
+gap_x 0
+gap_y 5
+minimum_size 1235 22
+maximum_width 1235
+#net_avg_samples 2
+no_buffers yes
+out_to_console no
+own_window yes
+own_window_class Conky
+own_window_type desktop
+own_window_argb_visual yes
+own_window_argb_value 128
+own_window_transparent no
+own_window_colour black
+own_window_hints undecorated,sticky,skip_taskbar,skip_pager
+update_interval 1
+uppercase no
+use_spacer left
+use_spacer right
+double_buffer yes
+short_units yes
+pad_percents 1
+text_buffer_size 512
+temperature_unit celsius
+
+TEXT
+${offset 5}${voffset 1}${color #aaaaff}${font OpenLogos:size=24}B${font}${color} ${offset 12}${voffset -20} ${kernel} ${color #999999}::${color} ${uptime} ${color #999999}::${color} \
+Battery: ${battery_time BAT0} ${battery BAT0} :: Disk: / ${fs_used_perc /}%, /home ${fs_used_perc /home}%
+${offset 60}${voffset 1}CPU: (${cpu cpu1}%/${cpu cpu2}%) ${cpugraph cpu0 12,80 00ff00 ff0000 -t} ::  Mem: (${memperc}%/${swapperc}%) ${memgraph 12,80 00ff00 ff0000 -t} \
+${alignr}${voffset -7}${offset -10}${time %B %e, %Y %I:%M:%S %p}
