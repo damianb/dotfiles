@@ -60,7 +60,7 @@ case `hostname` in
 			UUID=$(uuidgen -r)
 			scrot $HOME/.ss/$UUID.png && \
 			scp -q $HOME/.ss/$UUID.png solanine:/home/katana/http/i/ && \
-			echo "http://odios.us/~/i/$UUID.png" | xclip -selection clipboard
+			echo "https://tilde.odios.us/i/$UUID.png" | xclip -selection clipboard
 		}
 	;;
 esac
