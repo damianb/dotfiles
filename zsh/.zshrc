@@ -32,29 +32,32 @@ alias gp="git push"
 alias gg="git pull"
 
 unalias gc
-function gcommit {
+function gc {
   m=$@
   m=$(printf " %s" "${m[@]}") # i should use sed for this...but meh, fuck it
   m=${m:1}
   git commit -m "$m"
 }
-alias gc="gcommit"
 
-function gscommit {
+function gsc {
   m=$@
   m=$(printf " %s" "${m[@]}") # i should use sed for this...but meh, fuck it
   m=${m:1}
   git commit -S -m "$m"
 }
-alias gsc="gscommit"
 
 case `hostname` in
 	# server
 	(solanine.odios.us)
-		alias irc="$HOME/scripts/weechat.sh"
+		function irc {
+			$HOME/scripts/weechat.sh
+		}
 	;;
 	(*)
-		alias irc="TERM=xterm;ssh -t solanine /home/katana/scripts/weechat.sh"
+		function irc {
+			TERM=xterm
+			ssh -t solanine /home/katana/scripts/weechat.sh
+		}
 		function ss {
 			UUID=$(uuidgen -r)
 			scrot $HOME/.ss/$UUID.png && \
