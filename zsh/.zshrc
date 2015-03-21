@@ -16,8 +16,7 @@ source $ZSH/oh-my-zsh.sh
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias ll="ls -lAFh"
-function mkdircd() { mkdir $1; cd $1; }
-alias mkc=mkdircd
+function mkc() { mkdir $1; cd $1; }
 alias listps='ps aux | grep -v "ps aux" | grep -Ev "\[.+\]" | grep -v grep'
 alias memoryhog="ps aux | sort -nk +4 | tail -n 20"
 function sizehog() { du -hd 1 $@ | sort -h | tail -n 21 | head -n 20; }
@@ -51,8 +50,8 @@ alias gsc="gscommit"
 
 case `hostname` in
 	# server
-	(solanine.odios.us) 
-		alias irc="/home/katana/scripts/weechat.sh"		
+	(solanine.odios.us)
+		alias irc="$HOME/scripts/weechat.sh"
 	;;
 	(*)
 		alias irc="TERM=xterm;ssh -t solanine /home/katana/scripts/weechat.sh"
@@ -66,8 +65,8 @@ case `hostname` in
 esac
 
 if [[ -f $HOME/.nvm/nvm.sh ]]; then
-	source ~/.nvm/nvm.sh
+	source $HOME/.nvm/nvm.sh
 fi
 
 # update $PATH
-export PATH="$PATH:$HOME/.bin"
+export PATH="$PATH:$HOME/.bin:$HOME/node_modules/.bin"
