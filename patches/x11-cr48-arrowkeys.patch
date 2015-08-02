@@ -2,55 +2,75 @@ diff --git a/symbols/pc b/symbols/pc
 index 9f3da66..4bb6c02 100644
 --- a/symbols/pc
 +++ b/symbols/pc
-@@ -141,9 +141,29 @@ xkb_symbols "editing" {
+@@ -80,8 +80,48 @@
      key  <END> {	[  End			]	};
      key <PGDN> {	[  Next			]	};
- 
+
 -    key   <UP> {	[  Up			]	};
+-    key <LEFT> {	[  Left			]	};
+-    key <DOWN> {	[  Down			]	};
+-    key <RGHT> {	[  Right		]	};
 +    key <UP> {
 +        type="ARROW",
 +        repeat=yes,
-+        [ Up, Up, Prior, Home ],
++        [ Up, Up, Prior, Up ],
 +        actions[Group1] = [
 +            NoAction(),
 +            NoAction(),
 +            RedirectKey(key=<PGUP>, clearmods=Alt),
-+            RedirectKey(key=<HOME>, clearmods=Control+Alt)
++            NoAction()
 +        ]
 +    };
 +    key <DOWN> {
 +        type="ARROW",
 +        repeat=yes,
-+        [ Down, Down, Next, End ],
++        [ Down, Down, Next, Down ],
 +        actions[Group1] = [
 +            NoAction(),
 +            NoAction(),
 +            RedirectKey(key=<PGDN>, clearmods=Alt),
-+            RedirectKey(key=<END>, clearmods=Control+Alt)
++            NoAction()
 +        ]
 +    };
-+
-     key <LEFT> {	[  Left			]	};
--    key <DOWN> {	[  Down			]	};
-     key <RGHT> {	[  Right		]	};
++    key <LEFT> {
++        type="ARROW",
++        repeat=yes,
++        [ Left, Left, Home, Left ],
++        actions[Group1] = [
++            NoAction(),
++            NoAction(),
++            RedirectKey(key=<HOME>, clearmods=Alt),
++            NoAction()
++        ]
++    };
++    key <RGHT> {
++        type="ARROW",
++        repeat=yes,
++        [ Right, Right, End, Right ],
++        actions[Group1] = [
++            NoAction(),
++            NoAction(),
++            RedirectKey(key=<END>, clearmods=Alt),
++            NoAction()
++        ]
++    };
  };
--
 diff --git a/types/basic b/types/basic
 index cf1ee64..a48e26c 100644
 --- a/types/basic
 +++ b/types/basic
-@@ -5,6 +5,7 @@ default xkb_types "basic" {
-     // Fairly standard definitions for
-     // the four required key types
- 
+@@ -4,6 +4,7 @@
+     // three of the four required key types.
+     // The fourth type "KEYPAD" is defined in the "numpad" file.
+
 +    virtual_modifiers Alt;
      virtual_modifiers NumLock;
- 
+
      type "ONE_LEVEL" {
-@@ -28,4 +29,21 @@ default xkb_types "basic" {
-         level_name[Level2] = "Caps";
+@@ -27,4 +28,21 @@
+     level_name[Level2] = "Caps";
      };
- 
+
 +    // Extra type for up and down arrow keys, which we modify to send
 +    // Page Up and Page Down.
 +    type "ARROW" {
@@ -69,3 +89,5 @@ index cf1ee64..a48e26c 100644
 +        level_name[Level4]     = "ControlAlt";
 +    };
  };
+
+
