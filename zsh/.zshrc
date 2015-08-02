@@ -73,3 +73,7 @@ fi
 
 # update $PATH
 export PATH="$PATH:$HOME/.bin:$HOME/node_modules/.bin"
+
+if [[ -d $HOME/.keybase-install ]]; then
+	export PATH="$PATH:$HOME/.keybase-install/bin"
+fi
