@@ -70,4 +70,4 @@ if [[ -f $HOME/.nvm/nvm.sh ]]; then
 fi
 
 # update $PATH
-export PATH="$PATH:$HOME/.bin"
+export PATH="$PATH:$HOME/.bin:$HOME/node_modules/.bin"
