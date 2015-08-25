@@ -9,15 +9,13 @@ DISABLE_CORRECTION="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 plugins=(git)
-
 source $ZSH/oh-my-zsh.sh
 
 # aliases
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias ll="ls -lAFh"
-function mkdircd() { mkdir $1; cd $1; }
-alias mkc=mkdircd
+function mkc() { mkdir $1; cd $1; }
 alias listps='ps aux | grep -v "ps aux" | grep -Ev "\[.+\]" | grep -v grep'
 alias memoryhog="ps aux | sort -nk +4 | tail -n 20"
 function sizehog() { du -hd 1 $@ | sort -h | tail -n 21 | head -n 20; }
@@ -33,41 +31,47 @@ alias gp="git push"
 alias gg="git pull"
 
 unalias gc
-function gcommit {
+function gc {
   m=$@
   m=$(printf " %s" "${m[@]}") # i should use sed for this...but meh, fuck it
   m=${m:1}
   git commit -m "$m"
 }
-alias gc="gcommit"
 
-function gscommit {
+function gsc {
   m=$@
   m=$(printf " %s" "${m[@]}") # i should use sed for this...but meh, fuck it
   m=${m:1}
   git commit -S -m "$m"
 }
-alias gsc="gscommit"
 
 case `hostname` in
 	# server
-	(solanine.odios.us) 
-		alias irc="/home/katana/scripts/weechat.sh"		
+	(solanine.odios.us)
+		function irc {
+			$HOME/scripts/weechat.sh
+		}
 	;;
 	(*)
-		alias irc="TERM=xterm;ssh -t solanine /home/katana/scripts/weechat.sh"
+		function irc {
+			TERM=xterm
+			ssh -t solanine /home/katana/scripts/weechat.sh
+		}
 		function ss {
 			UUID=$(uuidgen -r)
 			scrot $HOME/.ss/$UUID.png && \
 			scp -q $HOME/.ss/$UUID.png solanine:/home/katana/http/i/ && \
-			echo "http://odios.us/~/i/$UUID.png" | xclip -selection clipboard
+			echo "https://tilde.odios.us/i/$UUID.png" | xclip -selection clipboard
 		}
 	;;
 esac
 
 if [[ -f $HOME/.nvm/nvm.sh ]]; then
-	source ~/.nvm/nvm.sh
+	source $HOME/.nvm/nvm.sh
 fi
 
 # update $PATH
 export PATH="$PATH:$HOME/.bin:$HOME/node_modules/.bin"
+if [[ -d $HOME/.keybase-install ]]; then
+	export PATH="$PATH:$HOME/.keybase-install/bin"
+fi
