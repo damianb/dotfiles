@@ -66,7 +66,8 @@ case `hostname` in
 	;;
 esac
 
-if [ -n "$(type -t rvm)" ] && [ "$(type -t rvm)" = function ]; then
+which thefuck >/dev/null
+if [ $? -eq 0 ]; then
 	eval "$(thefuck --alias)"
 fi
 
