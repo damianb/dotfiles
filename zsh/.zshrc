@@ -66,6 +66,10 @@ case `hostname` in
 	;;
 esac
 
+if [ -n "$(type -t rvm)" ] && [ "$(type -t rvm)" = function ]; then
+	eval "$(thefuck --alias)"
+fi
+
 if [[ -f $HOME/.nvm/nvm.sh ]]; then
 	source $HOME/.nvm/nvm.sh
 fi
