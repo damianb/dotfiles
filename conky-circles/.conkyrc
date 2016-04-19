@@ -24,7 +24,7 @@ gap_y 20
 minimum_size 240 450
 maximum_width 250
 own_window yes
-own_window_type root
+own_window_type desktop
 own_window_argb_visual true
 own_window_transparent yes
 own_window_hints undecorate,sticky,skip_taskbar,skip_pager,below
@@ -56,28 +56,25 @@ TEXT
 ${voffset 11}
 ${goto 148}${color4}${font Droid Sans:size=14}${time %e}
 ${goto 149}${color2}${voffset -18}${font Ubuntu:size=8}${time %b}
-${goto 145}${color2}${voffset -1}${font Ubuntu:size=8,weight:normal}${time %Y}${font}
+${goto 145}${color2}${voffset -1}${font Ubuntu:size=8:weight=normal}${time %Y}${font}
 
 ${voffset 33}
-${goto 90}${font Ubuntu:size=7,weight:bold}${color}CPU ${font Ubuntu:size=7,weight:normal}${color1}${alignr}${loadavg}
-${goto 90}${font Ubuntu:size=7,weight:normal}${color1}${top name 1}${alignr}${top cpu 1}%
-${goto 90}${font Ubuntu:size=7,weight:normal}${color2}${top name 2}${alignr}${top cpu 2}%
-${goto 90}${font Ubuntu:size=7,weight:normal}${color3}${top name 3}${alignr}${top cpu 3}%
+${goto 90}${font Ubuntu:size=7:bold}${color}CPU ${font Ubuntu:size=7:weight=normal}${color1}${alignr}${loadavg}
+${goto 90}${font Ubuntu:size=7:weight=normal}${color1}${top name 1}${alignr}${top cpu 1}%
+${goto 90}${font Ubuntu:size=7:weight=normal}${color2}${top name 2}${alignr}${top cpu 2}%
+${goto 90}${font Ubuntu:size=7:weight=normal}${color3}${top name 3}${alignr}${top cpu 3}%
 
 ${voffset 20}
-${goto 90}${font Ubuntu:size=7,weight:bold}${color}MEM ${font Ubuntu:size=7,weight:normal}${color1}${alignr}${mem} / ${memmax}
-${goto 90}${font Ubuntu:size=7,weight:normal}${color1}${top_mem name 1}${alignr}${top_mem mem 1}%
-${goto 90}${font Ubuntu:size=7,weight:normal}${color2}${top_mem name 2}${alignr}${top_mem mem 2}%
-${goto 90}${font Ubuntu:size=7,weight:normal}${color3}${top_mem name 3}${alignr}${top_mem mem 3}%
+${goto 90}${font Ubuntu:size=7:bold}${color}MEM ${font Ubuntu:size=7:weight=normal}${color1}${alignr}${mem} / ${memmax}
+${goto 90}${font Ubuntu:size=7:weight=normal}${color1}${top_mem name 1}${alignr}${top_mem mem 1}%
+${goto 90}${font Ubuntu:size=7:weight=normal}${color2}${top_mem name 2}${alignr}${top_mem mem 2}%
+${goto 90}${font Ubuntu:size=7:weight=normal}${color3}${top_mem name 3}${alignr}${top_mem mem 3}%
 
 ${voffset 20}
-${goto 90}${font Ubuntu:size=7,weight:bold}${color}DISK ${font Ubuntu:size=7,weight:normal}${color1}${alignr}${diskio}
-${goto 90}${font Ubuntu:size=7,weight:normal}${color1}used: ${fs_used /}${alignr} /
+${goto 90}${font Ubuntu:size=7:bold}${color}DISK ${font Ubuntu:size=7:weight=normal}${color1}${alignr}${diskio}
+${goto 90}${font Ubuntu:size=7:weight=normal}${color1}used: ${fs_used /}${alignr} /
 
 ${voffset 46}
-${goto 90}${font Ubuntu:size=7,weight:bold}${color}BATTERY
-${goto 90}${font Ubuntu:size=7,weight:normal}${color1}BAT0${alignr}${battery BAT0}
-${goto 90}${font Ubuntu:size=7,weight:normal}${color1}EST:${alignr}${battery_time BAT0}
-
-${voffset 940}
-${color2}${alignc}${font Ubuntu:size=12}${exec whoami}@${nodename}
+${goto 90}${font Ubuntu:size=7:bold}${color}BATTERY
+${goto 90}${font Ubuntu:size=7:weight=normal}${color1}BAT0${alignr}${battery BAT0}
+${goto 90}${font Ubuntu:size=7:weight=normal}${color1}EST:${alignr}${battery_time BAT0}
