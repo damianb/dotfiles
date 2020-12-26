@@ -10,6 +10,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
+setopt globdots
 unsetopt AUTO_CD
 
 # aliases
@@ -42,3 +43,5 @@ fi
 
 # update $PATH
 export PATH="$PATH:$HOME/.bin:$HOME/node_modules/.bin"
+
+export EDITOR=nano

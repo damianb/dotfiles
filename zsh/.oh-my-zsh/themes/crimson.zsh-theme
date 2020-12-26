@@ -39,7 +39,7 @@ local RESET="%{$reset_color%}"
 
 local CURRENT_DIR='${PWD/#$HOME/~}'
 local GIT_STAT='$(git_prompt_info)'
-local HOST=$(hostname -s)
+local HOST=$(cat /etc/hostname | cut -d "." -f1)
 local CARET_COLOR=$GREEN
 local CARET="$"
 local CONNECTION=""
