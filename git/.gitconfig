@@ -1,9 +1,18 @@
 [user]
 	email = katana@odios.us
 	name = Damian Bushong
-	signingkey = A991EA1F
 [push]
 	default = simple
 [alias]
 	mlog = !git --no-pager log --date=short --pretty=format:\"%Cred%h %Cgreen%cd %Creset%s %Cgreen%ae\"
+	graph = log --graph --oneline --decorate
+	sha = rev-parse HEAD
+	id = rev-parse --short HEAD
 	rebranch = !git branch $1 && git checkout $1
+	summary = log --date=short --pretty=format:'[%Cred%h%Creset] %Cgreen%cd%reset %s'
+	current = rev-parse --abbrev-ref HEAD
+[core]
+	autocrlf = false
+[gui]
+	gcwarning = false
+
