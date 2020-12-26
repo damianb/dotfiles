@@ -10,6 +10,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
+unsetopt AUTO_CD
 
 # aliases
 alias ls='ls --color=auto'
@@ -30,42 +31,6 @@ alias ga="git add"
 alias gp="git push"
 alias gg="git pull"
 
-unalias gc
-function gc {
-  m=$@
-  m=$(printf " %s" "${m[@]}") # i should use sed for this...but meh, fuck it
-  m=${m:1}
-  git commit -m "$m"
-}
-
-function gsc {
-  m=$@
-  m=$(printf " %s" "${m[@]}") # i should use sed for this...but meh, fuck it
-  m=${m:1}
-  git commit -S -m "$m"
-}
-
-case `hostname` in
-	# server
-	(solanine.odios.us)
-		function irc {
-			$HOME/scripts/weechat.sh
-		}
-	;;
-	(*)
-		function irc {
-			TERM=xterm
-			ssh -t solanine /home/katana/scripts/weechat.sh
-		}
-		function ss {
-			UUID=$(uuidgen -r)
-			scrot $HOME/.ss/$UUID.png && \
-			scp -q $HOME/.ss/$UUID.png solanine:/home/katana/http/i/ && \
-			echo "https://tilde.odios.us/i/$UUID.png" | xclip -selection clipboard
-		}
-	;;
-esac
-
 which thefuck >/dev/null
 if [ $? -eq 0 ]; then
 	eval "$(thefuck --alias)"
@@ -77,6 +42,3 @@ fi
 
 # update $PATH
 export PATH="$PATH:$HOME/.bin:$HOME/node_modules/.bin"
-if [[ -d $HOME/.keybase-install ]]; then
-	export PATH="$PATH:$HOME/.keybase-install/bin"
-fi
