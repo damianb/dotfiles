@@ -1,6 +1,0 @@
-tint2 &
-conky -q &
-volumeicon -b &
-nitrogen --restore &
-xcompmgr &
-dunst -b &
