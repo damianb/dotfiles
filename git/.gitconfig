@@ -1,0 +1,20 @@
+[user]
+	name = Damian Bushong
+	email = 141002651+damianb@users.noreply.github.com
+[push]
+	default = simple
+[alias]
+	mlog = !git --no-pager log --date=short --pretty=format:\"%Cred%h %Cgreen%cd %Creset%s %Cgreen%ae\"
+	graph = log --graph --oneline --decorate
+	sha = rev-parse HEAD
+	id = rev-parse --short HEAD
+	summary = log --date=short --pretty=format:'[%Cred%h%Creset] %Cgreen%cd%reset %s'
+	current = rev-parse --abbrev-ref HEAD
+	ghcommit = commit --author='Damian Bushong <141002651+damianb@users.noreply.github.com>'
+[core]
+	autocrlf = false
+	pager = less -F -X
+[gui]
+	gcwarning = false
+[pull]
+  ff = only
